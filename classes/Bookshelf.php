@@ -3,35 +3,48 @@
 class Bookshelf
 {
 
-    private $items = [];
+    private array $items = [];
     private int $maxCapacity = 0;
-    private int $totalItems = 0;
+    private int $currentItemQuantity = 0;
 
     public function __construct(int $capacity)
     {
         $this->maxCapacity = $capacity;
-        $this->totalItems  = 0;
-    }
-    public function reporting(): void
-    {
-
-        echo "Items: {$this->totalItems}" . PHP_EOL;
-        echo "How many can store: {($this->maxCapacity - $this->totalItems)}" . PHP_EOL;
+        $this->currentItemQuantity  = 0;
     }
 
 
-    public function store($item)
+    /**
+     * Store an item in the Array of Items
+     */
+    public function storeItem(iItem $item): void
     {
-        if ($this->totalItems > $this->maxCapacity) {
+        // The list is full
+        if ($this->currentItemQuantity >= $this->maxCapacity) {
             echo "The Bookshelf is full" . PHP_EOL;
             return;
         }
+        $this->currentItemQuantity++;
         array_push($this->items, $item);
-        $this->totalItems++;
     }
 
-
-    public function get($item)
+    /**
+     * Retrieve an item in the Array of Items
+     */
+    public function getItem(int $id): iItem
     {
+        // Id is on range of the current quantity of items
+        if ($id > 0 && $id < $this->currentItemQuantity) {
+            return $this->items[$id];
+        }
+    }
+
+    /**
+     * Report the current state of the Bookshelf
+     */
+    public function reporting(): void
+    {
+        echo "Items on Bookshelf: {$this->currentItemQuantity}" . PHP_EOL;
+        echo "How many you can store: {($this->maxCapacity - $this->currentItemQuantity)}" . PHP_EOL;
     }
 }
