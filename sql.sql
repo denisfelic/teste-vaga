@@ -22,3 +22,7 @@ INNER JOIN
 ON posts.user_id = usr.id;
 
 
+
+CREATE INDEX idx_user_id ON posts(user_id);
+CREATE INDEX idx_user_email ON users(email);
+
