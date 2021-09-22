@@ -16,7 +16,9 @@ CREATE TABLE `posts`(
 SELECT *
 FROM posts 
 INNER JOIN
-    (SELECT id
+    (SELECT *
     FROM users
-    WHERE users.email = 'EMAIL') idd 
-WHERE posts.user_id = idd;
+    WHERE users.email = 'test@gmail.com') usr 
+ON posts.user_id = usr.id;
+
+
