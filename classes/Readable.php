@@ -13,7 +13,7 @@ abstract class Readable
     {
         // Page not found
         if ($page > count($this->pages))
-            return -1;
+            return "Page not found";
 
         return $this->pages[$page];
     }
